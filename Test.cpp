@@ -38,8 +38,8 @@ NumberWithUnits mg{1000 , "mg"}; // 1e-6ton = 0.001kg = 1g = 1000mg
 NumberWithUnits hour{1 , "hour"}; // 1hour = 60min = 3600sec
 NumberWithUnits min{60 , "min"}; // 1hour = 60min = 3600sec
 NumberWithUnits sec{3600 , "sec"}; // 1hour = 60min = 3600sec
-NumberWithUnits USD(1,"USD"); // 1USD = 3.33ILS 
-NumberWithUnits ILS(2,"ILS"); // 2ILS = 6.66USD
+NumberWithUnits usd(1,"usd"); // 1USD = 3.33ILS 
+
 
 
 ifstream units_file{"units.txt"};
@@ -113,8 +113,8 @@ TEST_CASE("checks operators")
     NumberWithUnits hour_1{2 , "hour"};
     NumberWithUnits min_1{60 , "min"}; 
     NumberWithUnits sec_1{3600 , "sec"};
-    NumberWithUnits USD_1(1,"USD"); 
-    NumberWithUnits ILS_1(2,"ILS");
+    NumberWithUnits usd_1(1,"usd"); 
+    NumberWithUnits ils_1(2,"ils");
   
   
    
@@ -153,17 +153,19 @@ TEST_CASE("checks operators")
 
 TEST_CASE("checks equality operators")
 {
-  // test equality operators >=
-  CHECK(km_1 >= m_1000);
-  CHECK(km_1 >= cm_100000);
-  CHECK(m_1000 >= cm_100000);
-
-  
-  
-  
-  
-  
-  
+  // test equality operators >=/<=
+  CHECK(m >= cm);
+  CHECK(km >= m);
+  CHECK(km >= cm);
+  CHECK(ton >= kg);
+  CHECK(ton >= g);
+  CHECK(ton >= mg);
+  CHECK(kg >= g);
+  CHECK(kg >= mg);
+  CHECK(g >= mg); 
+  CHECK(hour >= min);
+  CHECK(hour >= sec);
+  CHECK(min >= sec); 
   
 }
 
