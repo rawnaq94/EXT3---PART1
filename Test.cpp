@@ -1,4 +1,6 @@
-//  test unit file - created by rawnaq amer on 12/04/2021.
+//  test unit file 
+//  created by rawnaq amer
+//  date:  12/04/2021.
 //
 
 #include <stdio.h>
@@ -155,15 +157,23 @@ TEST_CASE("checks equality operators")
 {
   // test equality operators >=/<=
   CHECK(m >= cm);
+  CHECK(cm <= m);
   CHECK(km >= m);
+  CHECK(m <= km);
   CHECK(km >= cm);
+  CHECK(cm <= km);
   CHECK(ton >= kg);
+  CHECK(kg <= ton); 
   CHECK(ton >= g);
+  CHECK(g <= ton);
   CHECK(ton >= mg);
+  CHECK(mg <= ton);  
   CHECK(kg >= g);
+  CHECK(g <= kg);
   CHECK(kg >= mg);
   CHECK(g >= mg); 
   CHECK(hour >= min);
+  CHECK(min <= hour);
   CHECK(hour >= sec);
   CHECK(min >= sec); 
   
@@ -171,43 +181,33 @@ TEST_CASE("checks equality operators")
 
 
 
+
 TEST_CASE("pre/post fix")
 {
-    // pre
-    CHECK((++a) == 2);
-    CHECK((++b) == 201);
-    CHECK((--a) == 1);
-    CHECK((--b) == 200);
+    NumberWithUnits a{4, "km"};
+    NumberWithUnits b{8, "m"};
+    NumberWithUnits c{12, "cm"};
 
-    // post
-    CHECK((a++) == 2);
-    CHECK((b++) == 201);
-    CHECK((a--) == 1);
-    CHECK((b--) == 200);
+    CHECK((++a) == 6);
+    CHECK((++b) == 9);
+    CHECK((++c) == 13);
 }
 
 
 
 
-TEST_CASE("I/O operators") // TODO: FIX operators recognition 
+TEST_CASE("operators") 
 {
     // input
     NumberWithUnits input();
-    istringstream my_stream("1[km]");
+    istringstream my_stream("40[m]");
     my_stream >> input;
-    CHECK(input == a);
-
-    NumberWithUnits input_2();
-    istringstream my_stream("2 0 0 [ m ] ");
-    my_stream >> input;
-    CHECK(input == b);
+    CHECK(input == m);
 
     // output
     string output;
-    output << cout << a;
-    CHECK(output == "1[km]");
+    output << cout << m;
+    CHECK(output == "40[m]");
 
-    string output2;
-    output2 << cout << b;
-    CHECK(output2 == "200[m]");
+
 }
